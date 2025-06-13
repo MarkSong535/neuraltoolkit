@@ -56,6 +56,24 @@ def highd_data_umap(data, n_neighbors=40, n_components=2,
 
     return embedding
 
+# KWarg version of highd_data_umap via polymorphism
+def highd_data_umap(data, **kwargs):
+    try:
+        from umap import UMAP
+    except ImportError:
+        raise ImportError('Run : conda install -c conda-forge umap-learn')
+    umap_model = UMAP(**kwargs)
+    embedding = umap_model.fit_transform(data[:, 0:])
+    return embedding
+
+def full_data_umap(data, **kwargs):
+    try:
+        from umap import UMAP
+    except ImportError:
+        raise ImportError('Run : conda install -c conda-forge umap-learn')
+    umap_model = UMAP(**kwargs)
+    embedding = umap_model.fit_transform(data)
+    return embedding
 
 def highd_data_tsne(data, perplexity=30.0, n_components=2,
                     metric='euclidean', n_iter=3000,
