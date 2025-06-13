@@ -62,7 +62,34 @@ def highd_data_umap(data, **kwargs):
         from umap import UMAP
     except ImportError:
         raise ImportError('Run : conda install -c conda-forge umap-learn')
-    umap_model = UMAP(**kwargs)
+    default_kwargs = {
+        'n_neighbors': 40,
+        'n_components': 2,
+        'metric': 'euclidean',
+        'n_epochs': None,
+        'learning_rate': 1.0,
+        'init': 'spectral',
+        'min_dist': 0.2,
+        'spread': 1.0,
+        'set_op_mix_ratio': 1.0,
+        'local_connectivity': 1.0,
+        'repulsion_strength': 1.0,
+        'negative_sample_rate': 5,
+        'transform_queue_size': 4.0,
+        'a': None,
+        'b': None,
+        'random_state': None,
+        'metric_kwds': None,
+        'angular_rp_forest': False,
+        'target_n_neighbors': -1,
+        'target_metric': 'categorical',
+        'target_metric_kwds': None,
+        'target_weight': 0.5,
+        'transform_seed': 42,
+        'verbose': True
+    }
+    default_kwargs.update(kwargs)
+    umap_model = UMAP(**default_kwargs)
     embedding = umap_model.fit_transform(data[:, 0:])
     return embedding
 
@@ -71,7 +98,34 @@ def full_data_umap(data, **kwargs):
         from umap import UMAP
     except ImportError:
         raise ImportError('Run : conda install -c conda-forge umap-learn')
-    umap_model = UMAP(**kwargs)
+    default_kwargs = {
+        'n_neighbors': 40,
+        'n_components': 2,
+        'metric': 'euclidean',
+        'n_epochs': None,
+        'learning_rate': 1.0,
+        'init': 'spectral',
+        'min_dist': 0.2,
+        'spread': 1.0,
+        'set_op_mix_ratio': 1.0,
+        'local_connectivity': 1.0,
+        'repulsion_strength': 1.0,
+        'negative_sample_rate': 5,
+        'transform_queue_size': 4.0,
+        'a': None,
+        'b': None,
+        'random_state': None,
+        'metric_kwds': None,
+        'angular_rp_forest': False,
+        'target_n_neighbors': -1,
+        'target_metric': 'categorical',
+        'target_metric_kwds': None,
+        'target_weight': 0.5,
+        'transform_seed': 42,
+        'verbose': True
+    }
+    default_kwargs.update(kwargs)
+    umap_model = UMAP(**default_kwargs)
     embedding = umap_model.fit_transform(data)
     return embedding
 
